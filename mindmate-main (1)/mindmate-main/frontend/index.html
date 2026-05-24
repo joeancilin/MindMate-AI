@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindMate — Your Wellness Companion</title>
+    <meta name="description" content="AI-powered mental wellness companion for students and young adults." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+        var isVite = isLocal && location.port === '5173'
+        if (location.protocol === 'file:' || (isLocal && !isVite)) {
+          location.replace('http://127.0.0.1:5173/')
+          return
+        }
+
+        window.addEventListener('error', function (event) {
+          var root = document.getElementById('root')
+          if (!root) return
+          root.innerHTML =
+            '<main style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f1117;color:#f1f5f9;font-family:Arial,sans-serif;padding:24px">' +
+            '<section style="max-width:720px;background:#1a1d2e;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px">' +
+            '<h1 style="margin:0 0 10px;font-size:24px">MindMate could not start</h1>' +
+            '<p style="margin:0 0 16px;color:#94a3b8">Run the full system with <strong>start-mindmate.bat</strong>, then open <strong>http://127.0.0.1:5173</strong>.</p>' +
+            '<pre style="white-space:pre-wrap;color:#fca5a5;background:rgba(255,255,255,.04);padding:12px;border-radius:8px">' + event.message + '</pre>' +
+            '</section></main>'
+        })
+
+        setTimeout(function () {
+          var root = document.getElementById('root')
+          if (!root || root.dataset.reactReady === 'true') return
+          var loader = root.querySelector('[data-loader]')
+          if (!loader) return
+          loader.innerHTML =
+            '<h1 style="margin:0 0 8px;font-size:28px">MindMate</h1>' +
+            '<p style="margin:0 0 14px;color:#94a3b8">The app server is not fully attached yet.</p>' +
+            '<p style="margin:0;color:#94a3b8">Double-click <strong>start-mindmate.bat</strong> in the project folder, then open <strong>http://127.0.0.1:5173</strong>.</p>'
+        }, 5000)
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root">
+      <main style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f1117;color:#f1f5f9;font-family:Arial,sans-serif">
+        <div data-loader style="text-align:center;max-width:560px;padding:24px">
+          <h1 style="margin:0 0 8px;font-size:28px">MindMate</h1>
+          <p style="margin:0;color:#94a3b8">Loading the app...</p>
+        </div>
+      </main>
+    </div>
+    <script src="/fallback-app.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

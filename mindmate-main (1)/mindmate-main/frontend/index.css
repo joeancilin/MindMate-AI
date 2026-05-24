@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg-primary:    #0f1117;
+  --bg-card:       #1a1d2e;
+  --bg-glass:      rgba(255, 255, 255, 0.04);
+  --accent-purple: #a78bfa;
+  --accent-green:  #6ee7b7;
+  --accent-coral:  #fca5a5;
+  --text-primary:  #f1f5f9;
+  --text-muted:    #94a3b8;
+  --border:        rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(167, 139, 250, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(167, 139, 250, 0.6); }
+
+/* ─── Glass card ─────────────────────────────────── */
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.glass-card-solid {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+/* ─── Gradient mesh background ───────────────────── */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.mesh-bg::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -200px;
+  background: radial-gradient(circle, rgba(167,139,250,0.12) 0%, transparent 70%);
+  animation: drift1 20s ease-in-out infinite alternate;
+}
+
+.mesh-bg::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  right: -150px;
+  background: radial-gradient(circle, rgba(110,231,183,0.10) 0%, transparent 70%);
+  animation: drift2 25s ease-in-out infinite alternate;
+}
+
+@keyframes drift1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(100px, 80px) scale(1.2); }
+}
+
+@keyframes drift2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-80px, -60px) scale(1.15); }
+}
+
+/* ─── Typing indicator ───────────────────────────── */
+.typing-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-purple);
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40%           { transform: translateY(-8px); opacity: 1; }
+}
+
+/* ─── Pulse (online indicator) ───────────────────── */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(110, 231, 183, 0.5); }
+  50%       { box-shadow: 0 0 0 6px rgba(110, 231, 183, 0); }
+}
+
+/* ─── Glow effects ───────────────────────────────── */
+.glow-purple { box-shadow: 0 0 20px rgba(167,139,250,0.2); }
+.glow-green  { box-shadow: 0 0 20px rgba(110,231,183,0.2); }
+
+/* ─── Mood emoji buttons ─────────────────────────── */
+.mood-btn {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.mood-btn:hover  { transform: scale(1.15); }
+.mood-btn.active { transform: scale(1.2); filter: drop-shadow(0 0 8px rgba(167,139,250,0.6)); }
+
+/* ─── Chat messages ──────────────────────────────── */
+.msg-ai {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px 16px 16px 16px;
+  max-width: 75%;
+}
+
+.msg-user {
+  background: rgba(167,139,250,0.18);
+  border: 1px solid rgba(167,139,250,0.25);
+  border-radius: 16px 4px 16px 16px;
+  max-width: 75%;
+  margin-left: auto;
+}
+
+/* ─── Textarea auto-resize ───────────────────────── */
+textarea {
+  field-sizing: content;
+  min-height: 44px;
+  max-height: 120px;
+  resize: none;
+}
+
+/* ─── Noise overlay ──────────────────────────────── */
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px;
+}
+
+/* ─── Skeleton loading ───────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, rgba(255,255,255,0.04) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Journal lined paper ────────────────────────── */
+.journal-paper {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    rgba(255,255,255,0.04) 31px,
+    rgba(255,255,255,0.04) 32px
+  );
+  line-height: 32px;
+}

@@ -1,0 +1,12 @@
+To run the full MindMate system:
+
+1. Double-click start-mindmate.bat in this folder.
+2. Wait until it says Backend is ready and Frontend is ready.
+3. Use this URL only:
+   http://127.0.0.1:5173
+
+Do not open frontend/index.html directly.
+Do not use VS Code Live Server for this React/Vite app.
+
+The backend runs at:
+http://127.0.0.1:8000/health
